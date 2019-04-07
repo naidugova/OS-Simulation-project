@@ -201,18 +201,20 @@ int main()
     	else
     	{
 
-    		if (i==timeQuantum)
+    		if ((i%timeQuantum)==0)
     		{
-    			printf("\nTime quantum expired \n");
-    			j=current_process;
-    			struct process sample;
-    			sample=queue[j];
-    	        for (j; j < queued_processes; ++j)
-    	        {
-    	        	
-    		        queue[j]=queue[j+1];
-    	        }
-    	        queue[j-1]=sample;
+    			if(i!=0)
+    			{
+    				printf("\nTime quantum expired \n");
+    			    j=current_process;
+    			    struct process sample;
+    			    sample=queue[j];
+    	            for (j; j < queued_processes; ++j)
+    	            {
+    		            queue[j]=queue[j+1];
+    	            }
+    	            queue[j-1]=sample;
+    			}
     		}
     	}
         }
