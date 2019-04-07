@@ -35,6 +35,8 @@ int N = 1;
 int totalTime=0;
 int aging=0;
 int aging_time=-1;
+float avg_turn_around_time=0;
+float avg_waiting_time=0;
 
 
 
@@ -257,8 +259,21 @@ int main()
     printf("-------------------------------------------------------------------------------------------------------------------------------\n");
     for (i=0; i < N; ++i)
     {
+    	static int total_turn_around_time=0;
+    	static int total_waiting_time=0;
     	printf("|\t%2d  \t|\t%2d  \t|\t%2d  \t|\t%2d     |\t  %2d        | \t %2d            | \t %2d        |\n ",completed[i].processNumber,completed[i].arrivalTime,completed[i].priority,completed[i].burstTime,completed[i].completionTime,completed[i].turnAroundTime,completed[i].waitingTime);
+        total_turn_around_time += completed[i].turnAroundTime;
+        total_waiting_time += completed[i].waitingTime;
+        if(i==(N-1))
+        {
+        	avg_turn_around_time = (float) total_turn_around_time/N;
+        	avg_waiting_time = (float) total_waiting_time/N;
+        }
+
     }
+
+    printf("\n The average turn around time of all processes is : %.3f \n",avg_turn_around_time );
+    printf("\n The average waiting time of all processes is : %.3f \n", avg_waiting_time);
 
 
 
