@@ -170,7 +170,7 @@ int main()
 
         printf("\nThe number of queued processes :%d\n",queued_processes );
 
-    	//If current process is completed the adding it to completed array
+    	//If current process is completed then adding it to completed array
     	if (current_process!=-1)
     	{
             if(queue[current_process].burstTime==0)
@@ -201,6 +201,10 @@ int main()
                 if ((i%timeQuantum)==0 & i!=0)
                 {
                     printf("\nTime quantum expired \n");
+                }
+                if (completed_processes==N)
+                {
+                    break;
                 }
             }
             else
