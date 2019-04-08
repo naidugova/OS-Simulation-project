@@ -22,7 +22,7 @@ struct process
 //static variable for maintaining no of completed processes
 int completed_processes=0 , queued_processes=0 , current_process=-1;
 //global variables
-int numberOfProcesses=0 , timeQuantum=0 , N = 1 , totalTime=0 , aging=0 , aging_time=-1;
+int numberOfProcesses=0 , timeQuantum=0 , N = 1 , totalTime=0 , aging=0 , aging_time=-1 , idle_time=0 ;
 float avg_turn_around_time=0 , avg_waiting_time=0;
 
 int main()
@@ -245,9 +245,14 @@ int main()
             printf("\nDecreasing burst time of %d process by 1 \n",queue[current_process].processNumber );
             queue[current_process].burstTime-=1;
         }
+        if (current_process==-1)
+        {
+            idle_time += 1;
+        }
     }
     
     printf("\n\n\t\t\t\t The completed processes are \n");
+    printf("\nCpu will be idle for %d Seconds \n",idle_time );
     printf("\n| Process number| Arrival time  |   Priority    |  Burst time  |   Completion time  |  Turnaroundtime  |   Waiting time    | \n");
     printf("-------------------------------------------------------------------------------------------------------------------------------\n");
     int total_turn_around_time=0 , total_waiting_time=0;
