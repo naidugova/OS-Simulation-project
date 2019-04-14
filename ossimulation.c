@@ -138,7 +138,8 @@ int main()
     printf("\nTotal time of execution is : %d \n",totalTime);
     
     //looping over total time
-    for ( i = 0; i <=totalTime; ++i)
+    int t=0;
+    for ( i = 0 , t=i; i <=totalTime; ++i,++t)
     {
         printf("\nAfter time %d second \n",i);
         int j=0;
@@ -189,6 +190,7 @@ int main()
                 queue[current_process].burstTime = available[mainpro].burstTime;
                 ++completed_processes;
                 printf("\nNo of processes completed : %d \n",completed_processes);
+                
                 //Removing current process from queue
                 j=current_process;
                 for (j; j < queued_processes; ++j)
@@ -198,9 +200,13 @@ int main()
                 --queued_processes;
                 current_process=-1;
                 printf("\nProcesses in the queue : %d\n",queued_processes );
-                if ((i%timeQuantum)==0 & i!=0)
+                if ((t%timeQuantum)==0 & t!=0)
                 {
                     printf("\nTime quantum expired \n");
+                }
+                else
+                {
+                    t-=(t%timeQuantum);
                 }
                 if (completed_processes==N)
                 {
@@ -209,7 +215,7 @@ int main()
             }
             else
             {
-                if ((i%timeQuantum)==0 & i!=0)
+                if ((t%timeQuantum)==0 & t!=0)
                 {
                     printf("\nTime quantum expired \n");
                     j=current_process;
@@ -225,7 +231,7 @@ int main()
         }
         else
         {
-            if ((i%timeQuantum)==0 & i!=0)
+            if ((t%timeQuantum)==0 & t!=0)
                 {
                     printf("\nTime quantum expired \n");
                 }
